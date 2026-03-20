@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BOBO — te quiero conocer</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--r:#E8302A;--rl:#FF6B5B;--rp:#FFF0EE;--rd:#8B1A15;--cr:#FFFAF9;--wh:#fff;--tm:#2A0A08;--tmu:#8B3A35;--th:#C4918C;--br:rgba(232,48,42,0.15);--brs:rgba(232,48,42,0.35)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:#F0DEDD;min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:20px 16px}
+.shell{width:390px;min-height:812px;background:var(--cr);border-radius:40px;overflow:hidden;box-shadow:0 24px 64px rgba(140,26,21,0.22),0 0 0 1px rgba(232,48,42,0.2);display:flex;flex-direction:column;position:relative}
+.sbar{background:var(--r);padding:10px 22px 7px;display:flex;justify-content:space-between}
+.sbar span{font-size:11px;color:#FFE8E6;font-weight:500}
+.scr{display:none;flex-direction:column;flex:1;animation:fi .18s ease}
+.scr.on{display:flex}
+@keyframes fi{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+/* HEADER */
+.hdr{background:var(--r);padding:14px 18px 18px}
+.logo-row{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.hearts{display:flex;gap:3px;align-items:center}
+.hrt{width:12px;height:11px;background:#FFE8E6;display:inline-block;clip-path:path("M6 10.5C3 8.2 0 6.2 0 3.3C0 1.4 1.4 0 3.1 0C4.1 0 5 0.6 6 1.9C7 0.6 7.9 0 8.9 0C10.6 0 12 1.4 12 3.3C12 6.2 9 8.2 6 10.5Z")}
+.hrt.f{transform:scaleX(-1)}
+.lname{font-family:'Caveat',cursive;font-size:18px;font-weight:700;color:#FFE8E6;letter-spacing:.5px}
+.ltag{font-size:10px;color:rgba(255,232,230,0.6);margin-left:auto;font-style:italic}
+.greet{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+.ghi{font-size:12px;color:#FFB8B4}
+.gname{font-size:23px;font-weight:700;color:#FFF0EE;font-family:'Caveat',cursive;line-height:1.1}
+.uav{width:40px;height:40px;background:#FFF0EE;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Caveat',cursive;font-size:17px;font-weight:700;color:var(--rd);cursor:pointer;border:2px solid rgba(255,255,255,0.25)}
+.tl{font-size:10px;color:#FFB8B4;text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px;font-weight:500}
+.ts{display:flex;gap:7px;overflow-x:auto;padding-bottom:3px;scrollbar-width:none}
+.ts::-webkit-scrollbar{display:none}
+.tc{background:rgba(255,255,255,0.14);border:1px solid rgba(255,255,255,0.22);border-radius:99px;padding:5px 12px;font-size:12px;color:#FFF0EE;white-space:nowrap;cursor:pointer;transition:all .13s;flex-shrink:0;display:flex;align-items:center;gap:5px}
+.tc:hover,.tc.hot{background:#FFF0EE;color:var(--rd);border-color:transparent}
+.tn{font-size:10px;opacity:.6}
+
+/* HOME BODY */
+.hbody{flex:1;overflow-y:auto;padding:14px 16px 80px;scrollbar-width:none;background:var(--cr)}
+.hbody::-webkit-scrollbar{display:none}
+.stl{font-size:10px;font-weight:500;color:var(--tmu);text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px}
+.cc{background:var(--wh);border:0.5px solid var(--br);border-radius:16px;padding:13px;margin-bottom:10px;cursor:pointer;transition:all .13s}
+.cc:hover{background:var(--rp);border-color:var(--brs);transform:translateY(-1px)}
+.ctag{font-size:10px;font-weight:500;color:var(--r);text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
+.ctxt{font-size:13px;color:var(--tm);line-height:1.5;margin-bottom:9px}
+.cfoot{display:flex;align-items:center;gap:7px}
+.pill{display:flex;align-items:center;gap:5px;background:var(--rp);border-radius:99px;padding:3px 9px 3px 4px}
+.dot{width:19px;height:19px;border-radius:50%;background:#FFB8B4;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:600;color:var(--rd)}
+.pname{font-size:11px;color:var(--rd)}
+.ctime{font-size:11px;color:var(--th);margin-left:auto}
+.clive{width:6px;height:6px;background:#2DB37A;border-radius:50%}
+.ncb{width:100%;background:var(--r);color:#FFF0EE;border:none;border-radius:99px;padding:13px;font-size:14px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;margin-top:4px;margin-bottom:80px;transition:background .13s;display:flex;align-items:center;justify-content:center;gap:8px}
+.ncb:hover{background:var(--rd)}
+
+/* CHAT */
+.chdr{background:var(--r);padding:12px 16px;display:flex;align-items:center;gap:11px}
+.bk{color:#FFF0EE;font-size:20px;cursor:pointer;line-height:1;padding:4px}
+.chav{width:36px;height:36px;background:#FFF0EE;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--rd);font-family:'Caveat',cursive;flex-shrink:0}
+.chi{flex:1}
+.chn{font-size:14px;font-weight:500;color:#FFF0EE}
+.chs{font-size:11px;color:#FFB8B4}
+.cms{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:9px;background:var(--cr);scrollbar-width:none;min-height:400px}
+.cms::-webkit-scrollbar{display:none}
+.lb{background:var(--rp);border:0.5px solid var(--brs);border-radius:8px;padding:6px 12px;font-size:11px;color:var(--tmu);text-align:center;align-self:center;max-width:85%}
+.mr{display:flex;gap:7px;align-items:flex-end}
+.mr.me{flex-direction:row-reverse}
+.mav{width:24px;height:24px;border-radius:50%;background:#FFB8B4;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:var(--rd);font-family:'Caveat',cursive}
+.mav.me{background:var(--r);color:#FFF0EE}
+.bub{background:var(--wh);border:0.5px solid var(--br);border-radius:14px 14px 14px 3px;padding:9px 12px;font-size:13px;color:var(--tm);line-height:1.5;max-width:220px;word-break:break-word}
+.bub.me{background:var(--r);color:#FFF0EE;border:none;border-radius:14px 14px 3px 14px}
+.typing{background:var(--wh);border:0.5px solid var(--br);border-radius:14px 14px 14px 3px;padding:11px 15px;display:flex;gap:4px;align-items:center}
+.td{width:7px;height:7px;background:#FFB8B4;border-radius:50%;animation:bo .9s infinite}
+.td:nth-child(2){animation-delay:.15s}.td:nth-child(3){animation-delay:.3s}
+@keyframes bo{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
+.lp{background:var(--rp);border:0.5px solid var(--brs);border-radius:12px;padding:10px 12px;align-self:center;width:90%}
+.lpt{font-size:12px;color:var(--tmu);margin-bottom:8px;text-align:center}
+.lbs{display:flex;gap:8px}
+.lyes{flex:1;background:var(--r);color:#FFF0EE;border:none;border-radius:99px;padding:8px;font-size:12px;cursor:pointer;font-family:'DM Sans'}
+.lno{flex:1;background:transparent;border:0.5px solid var(--r);color:var(--rd);border-radius:99px;padding:8px;font-size:12px;cursor:pointer;font-family:'DM Sans'}
+.cib{background:var(--wh);border-top:0.5px solid var(--br);padding:10px 12px;display:flex;align-items:center;gap:8px}
+#ci{flex:1;background:var(--rp);border:none;outline:none;border-radius:99px;padding:10px 16px;font-size:13px;color:var(--tm);font-family:'DM Sans',sans-serif}
+#ci::placeholder{color:var(--th)}
+.sb{width:38px;height:38px;background:var(--r);border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .13s;flex-shrink:0}
+.sb:hover{background:var(--rd)}
+
+/* GROUPS */
+.grb{flex:1;overflow-y:auto;padding:14px 16px 80px;scrollbar-width:none;background:var(--cr)}
+.grb::-webkit-scrollbar{display:none}
+.gc{background:var(--wh);border:0.5px solid var(--br);border-radius:14px;padding:12px 14px;margin-bottom:9px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:all .13s}
+.gc:hover{background:var(--rp);border-color:var(--brs)}
+.gi{width:44px;height:44px;border-radius:11px;background:var(--rp);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.gn{font-size:14px;font-weight:500;color:var(--tm);margin-bottom:2px}
+.gm{font-size:11px;color:var(--tmu)}
+.gl{width:8px;height:8px;background:#2DB37A;border-radius:50%;flex-shrink:0}
+#gsearch{width:100%;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.28);border-radius:99px;padding:9px 14px;font-size:13px;color:#FFF0EE;font-family:'DM Sans';outline:none;margin-top:10px}
+#gsearch::placeholder{color:rgba(255,232,230,0.55)}
+
+/* PROFILE */
+.prh{background:var(--r);padding:18px 18px 22px;text-align:center}
+.prav{width:70px;height:70px;background:#FFF0EE;border-radius:50%;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-family:'Caveat',cursive;font-size:28px;font-weight:700;color:var(--rd);border:3px solid rgba(255,255,255,0.3)}
+.prn{font-size:22px;font-weight:700;color:#FFF0EE;font-family:'Caveat',cursive}
+.prs{font-size:12px;color:#FFB8B4;margin-top:2px}
+.pst{display:flex;margin-top:12px}
+.psi{flex:1;text-align:center;border-right:1px solid rgba(255,255,255,0.18)}
+.psi:last-child{border-right:none}
+.psn{font-size:20px;font-weight:700;color:#FFF0EE;font-family:'Caveat',cursive}
+.psl{font-size:10px;color:#FFB8B4}
+.prb{flex:1;overflow-y:auto;padding:15px;scrollbar-width:none;background:var(--cr)}
+.prb::-webkit-scrollbar{display:none}
+.lrow{display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:0.5px solid var(--br)}
+.lrow:last-child{border-bottom:none}
+.lnum{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;flex-shrink:0}
+.l1{background:var(--r);color:#FFF0EE}
+.l2{background:#FFB8B4;color:var(--rd)}
+.l3{background:var(--rp);color:var(--rd);border:1px solid var(--brs)}
+.l4{background:#F0E8E8;color:#C0A0A0;border:1px solid #E0D0D0}
+.li{flex:1}
+.ln{font-size:13px;font-weight:500;color:var(--tm);margin-bottom:2px}
+.ld{font-size:11px;color:var(--tmu)}
+
+/* BOTTOM NAV */
+.bnv{background:var(--wh);border-top:0.5px solid var(--br);display:flex;padding:8px 0 14px}
+.bb{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;padding:4px;transition:all .13s}
+.bl{font-size:10px;color:var(--th);font-weight:500;font-family:'DM Sans'}
+.bb.on .bl{color:var(--r)}
+
+/* MODAL */
+.mov{display:none;position:absolute;inset:0;background:rgba(90,10,8,0.48);align-items:flex-end;z-index:100}
+.mov.open{display:flex}
+.ms{width:100%;background:var(--cr);border-radius:22px 22px 0 0;padding:18px;animation:su .22s ease}
+@keyframes su{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.mti{font-size:18px;font-weight:700;color:var(--tm);font-family:'Caveat',cursive;margin-bottom:12px}
+.mi{width:100%;background:var(--wh);border:0.5px solid var(--brs);border-radius:11px;padding:11px 13px;font-size:14px;color:var(--tm);font-family:'DM Sans';outline:none;margin-bottom:9px;resize:none}
+.mi::placeholder{color:var(--th)}
+.mtgs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:13px}
+.mtg{background:var(--rp);border:0.5px solid var(--br);border-radius:99px;padding:5px 11px;font-size:12px;color:var(--rd);cursor:pointer}
+.mtg:hover{background:#FFB8B4}
+.mact{display:flex;gap:8px}
+.mcn{flex:1;background:transparent;border:0.5px solid var(--brs);border-radius:99px;padding:11px;font-size:13px;color:var(--tmu);cursor:pointer;font-family:'DM Sans'}
+.msd{flex:2;background:var(--r);border:none;border-radius:99px;padding:11px;font-size:14px;font-weight:500;color:#FFF0EE;cursor:pointer;font-family:'DM Sans'}
+</style>
+</head>
+<body>
+<div class="shell">
+<div class="sbar"><span>9:41</span><span>Madrid · ●●●</span></div>
+
+<!-- HOME -->
+<div class="scr on" id="s-home">
+  <div class="hdr">
+    <div class="logo-row">
+      <div class="hearts">
+        <span class="hrt f"></span><span class="hrt"></span><span class="hrt f"></span><span class="hrt"></span>
+      </div>
+      <span class="lname">BOBO</span>
+      <span class="ltag">te quiero conocer</span>
+    </div>
+    <div class="greet">
+      <div><div class="ghi">hola de nuevo,</div><div class="gname">Jhonatan</div></div>
+      <div class="uav" onclick="go('profile')">Jh</div>
+    </div>
+    <div class="tl">temas en tendencia ahora</div>
+    <div class="ts" id="tsl"></div>
+  </div>
+  <div class="hbody">
+    <div class="stl">conversaciones abiertas</div>
+    <div id="cvl"></div>
+    <button class="ncb" onclick="document.getElementById('ncm').classList.add('open')">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      Nueva conversación
+    </button>
+  </div>
+  <div class="mov" id="ncm">
+    <div class="ms">
+      <div class="mti">¿Sobre qué quieres hablar?</div>
+      <textarea class="mi" id="nci" rows="3" placeholder="Escribe tu idea o pregunta para romper el hielo..."></textarea>
+      <div class="mtgs" id="mtgs"></div>
+      <div class="mact">
+        <button class="mcn" onclick="document.getElementById('ncm').classList.remove('open')">Cancelar</button>
+        <button class="msd" onclick="startNew()">Publicar y conectar</button>
+      </div>
+    </div>
+  </div>
+  <div class="bnv">
+    <button class="bb on" onclick="go('home')"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 9.5L11 3l8 6.5V19a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z" stroke="#E8302A" stroke-width="1.5" stroke-linejoin="round"/></svg><span class="bl">Inicio</span></button>
+    <button class="bb" onclick="go('groups')"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="8" cy="8" r="3" stroke="#C4918C" stroke-width="1.5"/><circle cx="15" cy="8" r="3" stroke="#C4918C" stroke-width="1.5"/><path d="M2 19c0-3.31 2.69-6 6-6s6 2.69 6 6" stroke="#C4918C" stroke-width="1.5" stroke-linecap="round"/><path d="M15 13c2.21 0 4 1.79 4 4" stroke="#C4918C" stroke-width="1.5" stroke-linecap="round"/></svg><span class="bl">Grupos</span></button>
+    <button class="bb" onclick="go('profile')"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="8" r="4" stroke="#C4918C" stroke-width="1.5"/><path d="M3 20c0-4.42 3.58-8 8-8s8 3.58 8 8" stroke="#C4918C" stroke-width="1.5" stroke-linecap="round"/></svg><span class="bl">Perfil</span></button>
+  </div>
+</div>
+
+<!-- CHAT -->
+<div class="scr" id="s-chat">
+  <div class="chdr">
+    <div class="bk" onclick="go('home')">←</div>
+    <div class="chav" id="chav">?</div>
+    <div class="chi"><div class="chn" id="chun">...</div><div class="chs" id="chus">...</div></div>
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="cursor:pointer" title="Voz anónima (próximamente)"><circle cx="8" cy="6" r="3" stroke="#FFF0EE" stroke-width="1.5"/><path d="M2 15c0-3.31 2.69-6 6-6s6 2.69 6 6" stroke="#FFF0EE" stroke-width="1.5" stroke-linecap="round"/></svg>
+  </div>
+  <div class="cms" id="cms"></div>
+  <div class="cib">
+    <input id="ci" placeholder="Escribe algo..." onkeydown="if(event.key==='Enter')sendMsg()"/>
+    <button class="sb" onclick="sendMsg()"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </div>
+</div>
+
+<!-- GROUPS -->
+<div class="scr" id="s-groups">
+  <div class="hdr">
+    <div class="logo-row">
+      <div class="hearts"><span class="hrt f"></span><span class="hrt"></span><span class="hrt f"></span><span class="hrt"></span></div>
+      <span class="lname">BOBO</span>
+    </div>
+    <div class="gname" style="font-size:21px;color:#FFF0EE;margin-bottom:8px">Grupos temáticos</div>
+    <input id="gsearch" placeholder="Busca un tema, ciudad, idioma..." oninput="filterG(this.value)"/>
+  </div>
+  <div class="grb"><div class="stl" style="margin-bottom:10px">activos cerca de ti</div><div id="grl"></div></div>
+  <div class="bnv">
+    <button class="bb" onclick="go('home')"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 9.5L11 3l8 6.5V19a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z" stroke="#C4918C" stroke-width="1.5" stroke-linejoin="round"/></svg><span class="bl">Inicio</span></button>
+    <button class="bb on" onclick="go('groups')"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="8" cy="8" r="3" stroke="#E8302A" stroke-width="1.5"/><circle cx="15" cy="8" r="3" stroke="#E8302A" stroke-width="1.5"/><path d="M2 19c0-3.31 2.69-6 6-6s6 2.69 6 6" stroke="#E8302A" stroke-width="1.5" stroke-linecap="round"/><path d="M15 13c2.21 0 4 1.79 4 4" stroke="#E8302A" stroke-width="1.5" stroke-linecap="round"/></svg><span class="bl">Grupos</span></button>
+    <button class="bb" onclick="go('profile')"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="8" r="4" stroke="#C4918C" stroke-width="1.5"/><path d="M3 20c0-4.42 3.58-8 8-8s8 3.58 8 8" stroke="#C4918C" stroke-width="1.5" stroke-linecap="round"/></svg><span class="bl">Perfil</span></button>
+  </div>
+</div>
+
+<!-- PROFILE -->
+<div class="scr" id="s-profile">
+  <div class="prh">
+    <div class="prav">Jh</div>
+    <div class="prn">Jhonatan</div>
+    <div class="prs">En BOBO desde marzo 2026</div>
+    <div class="pst">
+      <div class="psi"><div class="psn">14</div><div class="psl">conexiones</div></div>
+      <div class="psi"><div class="psn">38</div><div class="psl">mensajes</div></div>
+      <div class="psi"><div class="psn">5</div><div class="psl">grupos</div></div>
+    </div>
+  </div>
+  <div class="prb">
+    <div class="stl" style="margin-bottom:10px">tus capas de anonimato</div>
+    <div class="lrow"><div class="lnum l1">C1</div><div class="li"><div class="ln">Capa 1 — Nickname</div><div class="ld">Alias visible para todos</div></div><span style="font-size:12px;color:#2DB37A;font-weight:500">✓ Activa</span></div>
+    <div class="lrow"><div class="lnum l2">C2</div><div class="li"><div class="ln">Capa 2 — Origen</div><div class="ld">País y ciudad, mutuo acuerdo</div></div><span style="font-size:12px;color:var(--r);font-weight:500">3 activas</span></div>
+    <div class="lrow"><div class="lnum l3">C3</div><div class="li"><div class="ln">Capa 3 — Voz anónima</div><div class="ld">Llamada con voz modificada IA</div></div><span style="font-size:12px;color:var(--r);font-weight:500">1 activa</span></div>
+    <div class="lrow"><div class="lnum l4">C4</div><div class="li"><div class="ln">Capa 4 — Identidad real</div><div class="ld">Solo si ambos lo eligen</div></div><span style="font-size:12px;color:#C4A0A0">🔒 bloq.</span></div>
+    <div style="margin-top:18px;background:var(--wh);border:0.5px solid var(--br);border-radius:13px;padding:13px">
+      <div class="stl" style="margin-bottom:9px">actividad reciente</div>
+      <div style="font-size:13px;color:var(--tmu);line-height:1.9">
+        <div>· Conversación en <b style="color:var(--rd)">Vivir en España</b> — hace 2h</div>
+        <div>· Te uniste a <b style="color:var(--rd)">Filosofía cotidiana</b> — ayer</div>
+        <div>· 3 nuevas conexiones esta semana</div>
+      </div>
+    </div>
+  </div>
+  <div class="bnv">
+    <button class="bb" onclick="go('home')"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 9.5L11 3l8 6.5V19a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z" stroke="#C4918C" stroke-width="1.5" stroke-linejoin="round"/></svg><span class="bl">Inicio</span></button>
+    <button class="bb" onclick="go('groups')"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="8" cy="8" r="3" stroke="#C4918C" stroke-width="1.5"/><circle cx="15" cy="8" r="3" stroke="#C4918C" stroke-width="1.5"/><path d="M2 19c0-3.31 2.69-6 6-6s6 2.69 6 6" stroke="#C4918C" stroke-width="1.5" stroke-linecap="round"/><path d="M15 13c2.21 0 4 1.79 4 4" stroke="#C4918C" stroke-width="1.5" stroke-linecap="round"/></svg><span class="bl">Grupos</span></button>
+    <button class="bb on" onclick="go('profile')"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="8" r="4" stroke="#E8302A" stroke-width="1.5"/><path d="M3 20c0-4.42 3.58-8 8-8s8 3.58 8 8" stroke="#E8302A" stroke-width="1.5" stroke-linecap="round"/></svg><span class="b
